@@ -58,11 +58,6 @@ class FileConversionController extends Controller
         // Conversion du fichier en PDF
         $pdfPath = FileConverter::convertToPdf(storage_path("app/public/$filePath"), $outputDir);
 
-        // Rendre le fichier accessible via le navigateur
-        //$pdfUrl = asset('storage/' . basename($pdfPath));
-
-
-        // Supprimer le fichier original après conversion
         Storage::disk('public')->delete($filePath);
 
         return response()->download($pdfPath)->deleteFileAfterSend(true);
