@@ -42,7 +42,7 @@ class FileConversionController extends Controller
     public function convertToPdf(Request $request)
     {
         $request->validate([
-        'file' => 'required|file|mimes:doc,docx,xls,xlsx,ppt,pptx,odt,ods,odp,txt,rtf,html'
+        'file' => 'required|file|mimes:doc,docx,xls,xlsx,ppt,pptx,odt,ods,odp,txt,rtf,html|max:2048'
         ]);
 
         $file = $request->file('file');
