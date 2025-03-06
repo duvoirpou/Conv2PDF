@@ -4,14 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversion de fichier en PDF</title>
+    <title>Conv2PDF – Convertir vos fichiers en PDF en toute simplicité.</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
     <div class="container mt-5">
-        <h2>Convertir un fichier en PDF
-        </h2>
+        <h2>Conv2PDF – Convertir vos fichiers en PDF en toute simplicité.</h2>
 
         @if (session('error'))
             <div class="alert alert-danger">{{ session('error') }}</div>
