@@ -18,9 +18,11 @@
 
 <body>
     @include('_partials._header')
-    @yield('content')
+    <div class="container mt-5"
+        style="height: 70vh; display: flex; flex-direction: column; justify-content: center; background-color: #f0f0f0; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+        @yield('content')
+    </div>
     @include('_partials._footer')
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
