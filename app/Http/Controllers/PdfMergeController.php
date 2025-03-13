@@ -69,7 +69,7 @@ class PdfMergeController extends Controller
             }
         }
 
-        $outputPath = storage_path('app/merged.pdf');
+        $outputPath = storage_path('app/merged-' . time() . '.pdf');
         $pdf->Output($outputPath, 'F'); // Sauvegarde le fichier
 
         return response()->download($outputPath)->deleteFileAfterSend(true);
