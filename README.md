@@ -1,6 +1,6 @@
 # Conv2PDF
 
-Ce projet Laravel permet de télécharger et de convertir des fichiers (Word, Excel, LibreOffice, etc.) en format PDF. Le fichier est converti sur le serveur, puis téléchargé automatiquement par l'utilisateur. Les fichiers sont ensuite supprimés du serveur après la conversion.
+Ce projet Laravel permet principalement de télécharger et de convertir des fichiers (Word, Excel, LibreOffice, etc.) en format PDF. Le fichier est converti sur le serveur, puis téléchargé automatiquement par l'utilisateur. Les fichiers sont ensuite supprimés du serveur après la conversion. D'autres fonctionnalités pourront être ajoutées si besoin
 
 ## Fonctionnalités principales
 
@@ -8,6 +8,7 @@ Ce projet Laravel permet de télécharger et de convertir des fichiers (Word, Ex
 -   **Conversion automatique** des fichiers en format PDF.
 -   **Téléchargement immédiat** du fichier PDF.
 -   **Suppression des fichiers** après téléchargement pour éviter l'accumulation.
+-   **Fusion des PDF** Fusionner plusieurs PDF.
 
 ## Packages installés
 
@@ -18,6 +19,9 @@ Ce projet Laravel permet de télécharger et de convertir des fichiers (Word, Ex
 -   `phpoffice/phpword` : ^1.3 (Pour la manipulation de fichiers Word.)
 -   `spatie/browsershot` : ^5.0 (Pour la conversion de fichiers en PDF.)
 -   `phpoffice/phpspreadsheet` : ^4.1 (Pour la manipulation de fichiers Excel.)
+-   `setasign/fpdf` : ^1.8 (Générateur de PDF pour la création de fichiers PDF.)
+-   `setasign/fpdi` : ^2.6 (Générateur de PDF pour l'importation de fichiers PDF.)
+-   `tecnickcom/tcpdf` : ^6.8 (Générateur de PDF pour la création de fichiers PDF.)
 
 ## Version de PHP
 
@@ -75,9 +79,16 @@ Windows :
 
 Télécharge et installe LibreOffice depuis le site officiel.
 
-### 6. Démarrer le serveur
+### 6. Installer les packages pour la fusion des PDF
 
-Lance le serveur de développement pour accéder à l'application.
+Installe les packages suivants pour pouvoir fusionner des PDF :
+
+```bash
+composer require setasign/fpdf setasign/fpdi setasign/tcpdf
+composer require tecnickcom/tcpdf
+```
+
+### 7. Lance le serveur de développement pour accéder à l'application.
 
 ```bash
 php artisan serve
