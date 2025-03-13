@@ -16,7 +16,6 @@
         "setasign/fpdi": "^2.6",
         "setasign/tfpdf": "^1.33",
         "spatie/browsershot": "^5.0",
-        "tecnickcom/tc-lib-pdf": "^8.0",
         "tecnickcom/tcpdf": "^6.8"
     },
     "require-dev": {
