@@ -37,9 +37,9 @@
             @csrf
             <div class="mb-3">
                 <label for="file" class="form-label">Choisir un fichier (.doc, .docx, .xls, .xlsx, .ppt, .pptx,
-                    .odt, .ods, .odp, .txt, .rtf, .html)</label>
+                    .odt, .ods, .odp, .txt, .rtf, .html, .jpeg, .png, .jpg)</label>
                 <input type="file" class="form-control" id="file" name="file" required
-                    accept=".doc,.docx,.xls,.xlsx,.ppt,.pptx,.odt,.ods,.odp,.txt,.rtf,.html">
+                    accept=".doc,.docx,.xls,.xlsx,.ppt,.pptx,.odt,.ods,.odp,.txt,.rtf,.html,.jpeg,.png,.jpg">
             </div>
             @error('file')
                 <div class="alert alert-danger">{{ $message }}</div>

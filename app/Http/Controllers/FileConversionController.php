@@ -20,7 +20,7 @@ class FileConversionController extends Controller
     public function convertWordExcelToPdf(Request $request)
     {
         $request->validate([
-        'file' => 'required|file|mimes:doc,docx,xls,xlsx'
+            'file' => 'required|file|mimes:doc,docx,xls,xlsx'
         ]);
 
         $file = $request->file('file');
@@ -28,9 +28,9 @@ class FileConversionController extends Controller
         $filePath = $file->storeAs('uploads', $file->getClientOriginalName(), 'public');
 
         if (in_array($file->getClientOriginalExtension(), ['doc', 'docx'])) {
-        $pdfPath = FileConverter::convertWordToPdf(storage_path("app/public/$filePath"), $outputDir);
+            $pdfPath = FileConverter::convertWordToPdf(storage_path("app/public/$filePath"), $outputDir);
         } else {
-        $pdfPath = FileConverter::convertExcelToPdf(storage_path("app/public/$filePath"), $outputDir);
+            $pdfPath = FileConverter::convertExcelToPdf(storage_path("app/public/$filePath"), $outputDir);
         }
         // Rendre le fichier accessible via le navigateur
         /* $pdfUrl = asset('storage/' . basename($pdfPath));
@@ -42,14 +42,16 @@ class FileConversionController extends Controller
     public function convertToPdf(Request $request)
     {
         $request->validate([
-        'file' => 'required|file|mimes:doc,docx,xls,xlsx,ppt,pptx,odt,ods,odp,txt,rtf,html|max:2048'
+            'file' => 'required|file|mimes:doc,docx,xls,xlsx,ppt,pptx,odt,ods,odp,txt,rtf,html,jpeg,png,jpg|max:2048'
         ]);
 
         $file = $request->file('file');
         $outputDir = storage_path('app/public');
         // Nettoyer le nom du fichier et ajouter un horodatage unique
-        $cleanFileName = preg_replace('/[^A-Za-z0-9\-]/', '_', pathinfo($file->getClientOriginalName(),
-        PATHINFO_FILENAME));
+        $cleanFileName = preg_replace('/[^A-Za-z0-9\-]/', '_', pathinfo(
+            $file->getClientOriginalName(),
+            PATHINFO_FILENAME
+        ));
         $uniqueFileName = 'Tala_' . $cleanFileName . '_' . time() . '.' . $file->getClientOriginalExtension();
 
         // Stocker le fichier avec le nom unique
