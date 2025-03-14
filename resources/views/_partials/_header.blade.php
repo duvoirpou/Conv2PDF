@@ -22,9 +22,10 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-light" href="{{ route('fusionner.pdf') }}">Fusionner PDF</a>
                                 </li>
-                                {{-- <li class="nav-item">
-                                    <a class="nav-link text-light" href="#">Contact</a>
-                                </li> --}}
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" href="{{ route('form.compress') }}">Compresser
+                                        PDF</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
