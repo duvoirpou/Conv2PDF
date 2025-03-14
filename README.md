@@ -94,7 +94,7 @@ composer require tecnickcom/tcpdf
 Installe la bibliothèque PHP pour l'API iLovePDF (je l'utilise pour compresser les PDF) :
 
 ```bash
-php artisan serve
+composer require ilovepdf/ilovepdf-php
 ```
 
 ### 8. Serveur de développement
