@@ -22,6 +22,7 @@ Ce projet Laravel permet principalement de télécharger et de convertir des fic
 -   `setasign/fpdf` : ^1.8 (Générateur de PDF pour la création de fichiers PDF.)
 -   `setasign/fpdi` : ^2.6 (Générateur de PDF pour l'importation de fichiers PDF.)
 -   `tecnickcom/tcpdf` : ^6.8 (Générateur de PDF pour la création de fichiers PDF.)
+-   `ilovepdf/ilovepdf-php` : ^1.2 (API pour la conversion de fichiers en PDF.)
 
 ## Version de PHP
 
@@ -88,7 +89,17 @@ composer require setasign/fpdf setasign/fpdi setasign/tcpdf
 composer require tecnickcom/tcpdf
 ```
 
-### 7. Lance le serveur de développement pour accéder à l'application.
+### 7. Installer iLovePDF Api - Php Library
+
+Installe la bibliothèque PHP pour l'API iLovePDF (je l'utilise pour compresser les PDF) :
+
+```bash
+php artisan serve
+```
+
+### 8. Serveur de développement
+
+Lance le serveur de développement pour accéder à l'application :
 
 ```bash
 php artisan serve

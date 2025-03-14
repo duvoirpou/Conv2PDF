@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Ilovepdf\Ilovepdf;
 use App\Services\PdfCompressor;
+use Symfony\Component\Process\Process;
 
 class PdfCompressController extends Controller
 {
@@ -56,30 +57,63 @@ class PdfCompressController extends Controller
         }
     }
 
-    /*
-    public function compress(Request $request)
+    /* public function compress(Request $request)
     {
         $request->validate([
-            'pdf_file' => 'required|mimes:pdf|max:10240' // Max 10 MB
+            'pdf_file' => 'required|mimes:pdf|max:10240'  // Limite de taille à 10MB
         ]);
 
-        // 📂 Stocker le fichier PDF temporairement
+        // Enregistrer le fichier téléchargé
         $file = $request->file('pdf_file');
         $fileName = time() . '_' . $file->getClientOriginalName();
-        $filePath = $file->storeAs('public/uploads', $fileName);
+        $filePath = $file->storeAs('public/compressed', $fileName);
 
-        // 📌 Chemin du fichier à compresser
-        $inputFilePath = storage_path('app/' . $filePath);
+        $inputFilePath = storage_path('app/public/' . $filePath);
+        $outputFilePath = storage_path('app/public/compressed/' . $fileName);
 
-        // 🔥 Compresser le PDF avec le service
-        $compressedFilePath = $this->pdfCompressor->compressPdf($inputFilePath);
+        // Compression du PDF
+        $compressedFilePath = $this->pdfCompressor->compressPdf($inputFilePath, $outputFilePath);
 
-        if (!$compressedFilePath) {
-            return back()->with('error', 'Erreur lors de la compression.');
-        }
-
-        // 📥 Télécharger le fichier compressé et supprimer après envoi
+        // Retourner le fichier compressé pour téléchargement
         return response()->download($compressedFilePath)->deleteFileAfterSend(true);
-    }
-    */
+    } */
+
+    /* public function compressPdf(Request $request)
+    {
+        $request->validate([
+            'pdf_file' => 'required|mimes:pdf|file',
+        ]);
+
+        $file = $request->file('pdf_file');
+        $fileName = time() . '_' . $file->getClientOriginalName();
+        $filePath = $file->storeAs('compressed', $fileName);
+
+        $inputFilePath = storage_path('app/' . $filePath);
+        $outputFilePath = storage_path('app/public/compressed/' . $fileName);
+
+        $process = new Process([
+            'gs',
+            '-sDEVICE=pdfwrite',
+            '-dCompatibilityLevel=1.4',
+            '-dPDFSETTINGS=/screen',
+            '-dDownsampleColorImages=/Bicubic,150',
+            '-dDownsampleGrayImages=/Bicubic,150',
+            '-dDownsampleMonoImages=/Bicubic,150',
+            '-dOptimize=true',
+            '-dCompressObjects=true',
+            '-dPrinted=true',
+            '-dFitPage',
+            '-dNOPAUSE',
+            '-dQUIET',
+            '-dBATCH',
+            '-sOutputFile=' . $outputFilePath,
+            $inputFilePath,
+        ]);
+
+        $process->run();
+
+
+
+        return response()->download($outputFilePath)->deleteFileAfterSend(true);
+    } */
 }
