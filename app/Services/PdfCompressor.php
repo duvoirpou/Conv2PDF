@@ -14,7 +14,7 @@ class PdfCompressor
         $this->ilovepdf = new Ilovepdf('project_public_51a5782c94a26bdc292daead06b4714c_adc2V765c5c489bf0382d6c92955e6197fb5a', 'secret_key_dd846d7db5b559fef1efc924b31fa650_xfBBX28c7ee6edf2407e22e05d92dfee13502');
     }
 
-    public function compressPdf($inputFilePath, $outputFilePath)
+    /* public function compressPdf($inputFilePath, $outputFilePath)
     {
         $task = $this->ilovepdf->newTask('compress');
         $file = $task->addFile($inputFilePath);
@@ -22,7 +22,7 @@ class PdfCompressor
         $task->download(storage_path('app/public/compressed/' . $file->getName()));
 
         return $outputFilePath;
-    }
+    } */
 
     /* public function compressPdf($inputFilePath, $outputFilePath)
     {
@@ -32,4 +32,20 @@ class PdfCompressor
 
         return $outputFilePath;
     } */
+
+    public function compressPdf($inputFilePath, $outputFilePath)
+    {
+        if (!file_exists($inputFilePath)) {
+            throw new \Exception("Le fichier source n'existe pas : " . $inputFilePath);
+        }
+
+        // 📌 Commande optimisée pour compresser le PDF avec qpdf
+        $command = "qpdf --object-streams=generate --compress-streams=y --linearize --optimize-images=4 --recompress-flate=y --recompress-jpeg=y \"$inputFilePath\" \"$outputFilePath\"";
+
+        exec($command, $output, $returnVar);
+
+
+
+        return $outputFilePath;
+    }
 }

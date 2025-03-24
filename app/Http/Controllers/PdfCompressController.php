@@ -21,7 +21,7 @@ class PdfCompressController extends Controller
         return view('compress.index');
     }
 
-    public function compress(Request $request)
+    /* public function compress(Request $request)
     {
         $request->validate([
             'pdf_file' => 'required|mimes:pdf|max:10240' // Max 10 MB
@@ -54,6 +54,34 @@ class PdfCompressController extends Controller
             return response()->download($compressedFilePath)->deleteFileAfterSend(true);
         } catch (\Exception $e) {
             return back()->with('error', 'Erreur lors de la compression : ' . $e->getMessage());
+        }
+    } */
+
+    public function compress(Request $request)
+    {
+        $request->validate([
+            'pdf_file' => 'required|file|mimes:pdf|max:51200', // Max 50MB
+        ]);
+
+        $file = $request->file('pdf_file');
+        //dd($file);
+        $originalPath = $file->store('uploads', 'public'); // Stocke le fichier
+        $originalFilePath = storage_path("app/public/$originalPath");
+
+        $compressedFileName = 'compressed_' . time() . '.pdf';
+        $compressedFilePath = storage_path("app/public/compressed/$compressedFileName");
+
+        if (!file_exists(storage_path("app/public/compressed"))) {
+            mkdir(storage_path("app/public/compressed"), 0777, true);
+        }
+
+        try {
+            $compressor = new PdfCompressor();
+            $compressor->compressPdf($originalFilePath, $compressedFilePath);
+
+            return response()->download($compressedFilePath)->deleteFileAfterSend(true);
+        } catch (\Exception $e) {
+            return back()->with('error', "Erreur lors de la compression : " . $e->getMessage());
         }
     }
 

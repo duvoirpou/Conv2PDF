@@ -2,8 +2,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h1 class="display-4">Conv2PDF</h1>
-                <p class="lead">Convertir vos fichiers en PDF en toute simplicité.</p>
+                <h1 class="display-4">ArtisanPDF</h1>
+                <p class="lead">
+                    Créer, modifier et exporter des documents PDF avec facilité.
+                </p>
             </div>
             <div class="col-md-6 text-end">
                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
